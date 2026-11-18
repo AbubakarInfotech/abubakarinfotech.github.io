@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Contact – Abubakar Khoso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121316;--surface:#1A1C21;--line:#2A2D35;--ink:#F3F1EC;--muted:#9B9EA8;--orange:#FF6A1F;--blue:#2F7BFF;
+--display:'Syne','Segoe UI',system-ui,sans-serif;--body:'Manrope','Segoe UI',system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}p{margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto;position:relative}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;will-change:transform,opacity}
+.o1{width:520px;height:520px;background:var(--orange);left:-160px;top:6%;animation:d1 26s ease-in-out infinite alternate,p 9s ease-in-out infinite}
+.o2{width:600px;height:600px;background:var(--blue);right:-200px;top:30%;animation:d2 32s ease-in-out infinite alternate,p 11s ease-in-out infinite 2s}
+.o3{width:420px;height:420px;background:var(--orange);left:35%;bottom:-160px;opacity:.18;animation:d3 28s ease-in-out infinite alternate,p 13s ease-in-out infinite 4s}
+.o4{width:340px;height:340px;background:var(--blue);left:12%;top:62%;opacity:.16;animation:d2 36s ease-in-out infinite alternate-reverse,p 10s ease-in-out infinite 1s}
+@keyframes d1{to{transform:translate(260px,180px)}}@keyframes d2{to{transform:translate(-300px,-140px)}}@keyframes d3{to{transform:translate(-240px,-120px)}}
+@keyframes p{50%{opacity:.12}}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.95rem 1.8rem;border-radius:999px;font:700 1rem var(--body);border:2px solid transparent;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-main{background:var(--orange);color:#14100D;box-shadow:0 10px 30px -10px rgba(255,106,31,.7)}
+.btn-main:hover{box-shadow:0 16px 36px -10px rgba(255,106,31,.9)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:.3s}
+.nav.s{background:rgba(var(--bgr),.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font:800 1.5rem var(--display)}.logo i{font-style:normal;color:var(--orange)}
+.links{display:flex;align-items:center;gap:1.6rem;list-style:none;margin:0;padding:0}
+.links a:not(.btn){color:var(--muted);font-weight:500;transition:color .2s;padding:.2rem 0;border-bottom:2px solid transparent}
+.links a:not(.btn):hover,.links a.on{color:var(--ink)}.links a.on{border-color:var(--orange)}
+.links .btn{padding:.6rem 1.25rem}
+.burger{display:none;background:0;border:0;width:44px;height:44px;color:var(--ink);cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:currentColor;margin:6px auto;transition:.3s var(--ease)}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:860px){.burger{display:block}
+.links{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:.5rem 20px 1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.3s var(--ease)}
+.links.open{opacity:1;visibility:visible;transform:none}.links li{border-bottom:1px solid var(--line)}.links li:last-child{border:0;padding-top:1.2rem}
+.links a:not(.btn){display:block;padding:1rem 0;font-size:1.15rem;border:0}}
+
+.ph{padding:150px 0 30px}
+.ph h1{font-size:clamp(3.4rem,10vw,7rem);font-weight:800;letter-spacing:-.05em;line-height:.95;padding-bottom:.08em;background:linear-gradient(100deg,var(--orange),#FF9A55 45%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;animation:fu 1s var(--ease) .1s both}
+.ph p{color:var(--muted);font-size:clamp(1.1rem,2vw,1.35rem);max-width:36rem;margin-top:1.2rem;animation:fu 1s var(--ease) .3s both}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}}
+section{padding:clamp(50px,8vw,100px) 0}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv.in{opacity:1;transform:none}
+.head{margin-bottom:2.6rem}.head p{color:var(--muted);margin-top:1rem;max-width:34rem}
+
+
+
+.btn-line{border-color:var(--line);color:var(--ink)}
+.cg{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.6rem,4vw,3rem);align-items:start}
+.info{display:grid;gap:1rem}
+.ic{display:flex;gap:1rem;align-items:center;padding:1.2rem 1.3rem;border:1px solid var(--line);border-radius:20px;background:rgba(var(--sr),.75);backdrop-filter:blur(8px);transition:border-color .4s,transform .4s var(--ease)}
+a.ic:hover{border-color:var(--orange);transform:translateY(-3px)}
+.ic .i{flex:none;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);color:var(--orange)}
+.ic:nth-child(even) .i{color:var(--blue)}
+.i svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic small{display:block;color:var(--muted);font-size:.9rem;line-height:1.3}.ic b{display:block;word-break:break-word}
+.sl{display:flex;gap:.8rem;align-items:center;margin-top:.4rem}.sl span{color:var(--muted);margin-right:.3rem}
+.sl a{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.3s var(--ease)}
+.sl a:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 28px -10px rgba(47,123,255,.8)}.sl svg{width:22px;height:22px;fill:currentColor}
+.fm{position:relative;padding:clamp(1.5rem,4vw,2.6rem);border:1px solid var(--line);border-radius:28px;background:var(--surface);overflow:hidden}
+.fm::before{content:"";position:absolute;width:320px;height:320px;right:-120px;top:-120px;border-radius:50%;background:var(--orange);filter:blur(90px);opacity:.14;pointer-events:none}
+.lead{font:700 clamp(1.15rem,2.2vw,1.45rem)/1.35 var(--display);letter-spacing:-.01em;margin-bottom:1.6rem;max-width:30rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem}.fr.one{grid-template-columns:1fr}
+.fld{--fc:var(--orange);--fg:255,106,31;position:relative}
+.fld.b{--fc:var(--blue);--fg:47,123,255}
+.fld label{display:block;font-weight:700;font-size:.95rem;margin-bottom:.45rem;transition:color .35s}
+.fld label em{font-style:normal;color:var(--muted);font-weight:500}
+.fld:focus-within label{color:var(--fc)}
+.fld input,.fld select,.fld textarea{width:100%;font:400 1rem var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:.95rem 1.1rem;outline:0;transition:border-color .35s,box-shadow .45s var(--ease),background .35s,transform .35s var(--ease)}
+.fld textarea{min-height:150px;resize:vertical;line-height:1.55}
+.fld input::placeholder,.fld textarea::placeholder{color:#6B6F7A}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:#41454F}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--fc);background:#171A1F;box-shadow:0 0 0 4px rgba(var(--fg),.16),0 0 30px -6px rgba(var(--fg),.6)}
+.fld select{appearance:none;-webkit-appearance:none;padding-right:2.8rem;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%239B9EA8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.fld select option{background:#1A1C21;color:var(--ink)}
+.fld select:invalid{color:#6B6F7A}
+.fld [aria-invalid=true]{border-color:#FF5C5C;box-shadow:0 0 0 4px rgba(255,92,92,.14)}
+.err{display:block;min-height:1.2rem;color:#FF8585;font-size:.88rem;margin-top:.3rem}
+.sub{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:.6rem}
+.sub .btn{padding:1.05rem 2.4rem;font-size:1.05rem}
+.sub small{color:var(--muted);flex:1;min-width:14rem}
+.ok{display:none;text-align:center;padding:2rem 0}.ok.show{display:block;animation:fu .8s var(--ease) both}
+.ok .tick{width:72px;height:72px;margin:0 auto 1.4rem;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--blue));box-shadow:0 0 40px -6px rgba(255,106,31,.7)}
+.ok svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ok h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:.8rem}.ok p{color:var(--muted);max-width:28rem;margin:0 auto 1.4rem}.ok a.m{color:var(--orange);font-weight:700}
+.fm.sent form{display:none}.fm.sent .lead{display:none}
+@media(max-width:900px){.cg{grid-template-columns:1fr}}
+@media(max-width:560px){.fr{grid-template-columns:1fr}.sub .btn{width:100%}}
+.foot{border-top:1px solid var(--line);padding:3rem 0 2rem;background:rgba(var(--bgr),.7)}
+.fg{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.fl{display:flex;gap:1.6rem;flex-wrap:wrap;list-style:none;padding:0;margin:1rem 0 0}.fl a{color:var(--muted);transition:color .2s}.fl a:hover{color:var(--orange)}
+.soc{display:flex;gap:.7rem;align-items:flex-start}
+.soc a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.3s var(--ease)}
+.soc a:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-3px)}.soc svg{width:20px;height:20px;fill:currentColor}
+.copy{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.93rem}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("cms_theme")||"slate")}catch(e){document.documentElement.setAttribute("data-theme","slate")}</script>
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div></div>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a href="index.html" class="logo" aria-label="Abubakar, home">abubakar<i>.</i></a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  <ul class="links" id="menu">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="contact.html" class="on" aria-current="page">Contact</a></li>
+    <li><a href="contact.html" class="btn btn-main">Hire me</a></li>
+  </ul>
+</div></header>
+
+<main>
+<section class="ph"><div class="wrap">
+  <h1 data-cms="contact_1">Contact</h1>
+  <p data-cms="contact_2">Have an idea, a project or an opportunity? I’d love to hear about it.</p>
+</div></section>
+
+<section style="padding-top:30px"><div class="wrap cg">
+  <div class="info">
+    <a class="ic rv" href="mailto:you@example.com" id="mailrow"><span class="i"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><b id="mailtxt">you@example.com</b></span></a>
+    <div class="ic rv" id="warow"><span class="i"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-13.3 7.9L3 21l1.2-4.5A9 9 0 1121 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8a4 4 0 01-2-2l.8-.8-1-2z"/></svg></span><span><small>WhatsApp</small><b id="watxt">Available on request</b></span></div>
+    <div class="sl rv"><span>Find me online</span>
+      <a href="https://github.com/AbubakarInfotech" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 015 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.6h.05c.55-1 1.9-2 3.9-2 4.1 0 4.5 2.7 4.5 6.2V21h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21h-4z"/></svg></a>
+      <a href="mailto:you@example.com" aria-label="Email" class="mailicon"><svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+  </div>
+  <div class="fm rv" id="fm">
+    <p class="lead" data-cms="contact_3">Reach out for app development, web projects, or entry-level and internship opportunities.</p>
+    <form id="form" novalidate>
+      <div class="fr">
+        <div class="fld"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Your full name" required><span class="err" id="e-name"></span></div>
+        <div class="fld b"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required><span class="err" id="e-email"></span></div>
+      </div>
+      <div class="fr">
+        <div class="fld"><label for="type">Project type</label><select id="type" name="type" required><option value="" disabled selected>Choose one</option><option>Android App</option><option>AI Tool</option><option>Web Development</option><option>Internship / Job Opportunity</option><option>Other</option></select><span class="err" id="e-type"></span></div>
+        <div class="fld b"><label for="budget">Budget <em>(optional)</em></label><input id="budget" name="budget" type="text" placeholder="For example PKR 50,000 or $200"><span class="err"></span></div>
+      </div>
+      <div class="fr one">
+        <div class="fld"><label for="msg">Message</label><textarea id="msg" name="message" placeholder="Tell me about your project or the role you have in mind." required></textarea><span class="err" id="e-msg"></span></div>
+      </div>
+      <div class="sub"><button type="submit" class="btn btn-main">Send message</button><small id="note">Sending opens your email app with your message ready to go.</small></div>
+    </form>
+    <div class="ok" id="ok" role="status" tabindex="-1">
+      <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>Your message is ready</h2>
+      <p>Your email app should open with everything filled in. Just press send. If nothing opens, email me directly at <a class="m" id="okmail" href="mailto:you@example.com">you@example.com</a>.</p>
+      <button type="button" class="btn btn-line" id="again">Write another message</button>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div class="fg">
+    <div><a href="index.html" class="logo">abubakar<i>.</i></a>
+      <ul class="fl"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="soc">
+      <a href="https://github.com/AbubakarInfotech" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 015 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.6h.05c.55-1 1.9-2 3.9-2 4.1 0 4.5 2.7 4.5 6.2V21h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21h-4z"/></svg></a>
+      <a href="mailto:you@example.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm9 7L4.5 7v1.5l7.5 5 7.5-5V7z"/></svg></a>
+    </div>
+  </div>
+  <p class="copy">© <span id="yr">2026</span> Abubakar Khoso. All rights reserved.</p>
+</div></footer>
+
+<script>
+(function(){
+var CONTACT_EMAIL='you@example.com'; /* replace with your real email; the Admin Panel will manage this later */
+var $=function(s){return document.querySelector(s)};
+var nav=$('#nav'),bu=$('.burger'),mn=$('#menu');
+function sc(){nav.classList.toggle('s',scrollY>20)}addEventListener('scroll',sc,{passive:true});sc();
+bu.onclick=function(){var o=mn.classList.toggle('open');bu.setAttribute('aria-expanded',o);bu.setAttribute('aria-label',o?'Close menu':'Open menu')};
+mn.onclick=function(e){if(e.target.closest('a')){mn.classList.remove('open');bu.setAttribute('aria-expanded','false')}};
+$('#yr').textContent=new Date().getFullYear();
+document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){if(a.id!=='mailrow'&&!a.hasAttribute('data-keep')&&!a.classList.contains('btn'))a.href='mailto:'+CONTACT_EMAIL});
+$('#mailrow').href='mailto:'+CONTACT_EMAIL;$('#mailtxt').textContent=CONTACT_EMAIL;$('#okmail').textContent=CONTACT_EMAIL;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=Math.min(i,4)*120+'ms';io.observe(el)});
+var f=$('#form'),fm=$('#fm'),ok=$('#ok');
+function bad(id,eid,msg){var el=$(id);el.setAttribute('aria-invalid','true');$(eid).textContent=msg;el.setAttribute('aria-describedby',eid.slice(1));return el}
+function clear(){f.querySelectorAll('[aria-invalid]').forEach(function(x){x.removeAttribute('aria-invalid')});f.querySelectorAll('.err').forEach(function(x){x.textContent=''})}
+f.addEventListener('input',function(e){if(e.target.hasAttribute('aria-invalid')){e.target.removeAttribute('aria-invalid');var s=e.target.parentNode.querySelector('.err');if(s)s.textContent=''}});
+f.addEventListener('submit',function(e){e.preventDefault();clear();var first=null;
+ var n=$('#name').value.trim(),m=$('#email').value.trim(),t=$('#type').value,b=$('#budget').value.trim(),g=$('#msg').value.trim();
+ if(!n)first=first||bad('#name','#e-name','Please enter your name.');
+ if(!m)first=first||bad('#email','#e-email','Please enter your email.');else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){var x=bad('#email','#e-email','That email doesn\u2019t look right. Check it and try again.');first=first||x}
+ if(!t)first=first||bad('#type','#e-type','Please choose a project type.');
+ if(!g)first=first||bad('#msg','#e-msg','Please write a short message.');
+ if(first){first.focus();return}
+ var body='Name: '+n+'\nEmail: '+m+'\nProject type: '+t+'\nBudget: '+(b||'Not specified')+'\n\n'+g;
+ location.href='mailto:'+(window.CMS_EMAIL||CONTACT_EMAIL)+'?subject='+encodeURIComponent(t+' enquiry from '+n)+'&body='+encodeURIComponent(body);
+ fm.classList.add('sent');ok.classList.add('show');ok.focus()});
+$('#again').onclick=function(){f.reset();clear();fm.classList.remove('sent');ok.classList.remove('show');$('#name').focus()};
+})();
+</script>
+<script src="assets/defaults.js"></script>
+<script src="assets/firebase-config.js"></script>
+<script src="assets/fb.js"></script>
+<script src="assets/cms.js"></script>
+</body>
+</html>

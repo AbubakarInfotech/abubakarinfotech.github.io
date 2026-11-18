@@ -1,0 +1,17 @@
+/* Color themes. The Admin Panel switches html[data-theme] and every page updates. */
+:root,html[data-theme="slate"]{--bg:#121316;--surface:#1A1C21;--line:#2A2D35;--ink:#F3F1EC;--muted:#9B9EA8;--p:#8B5CF6;--c:#22D3EE;--p2:#7C3AED;--pl:#C4B5FD;--cl:#7BE4F5;--pr:139,92,246;--cr:34,211,238;--bgr:18,19,22;--sr:26,28,33}
+html[data-theme="midnight"]{--bg:#0A1020;--surface:#111A30;--line:#1F2C4A;--ink:#EAF0FF;--muted:#8FA0C4;--p:#3B82F6;--c:#38BDF8;--p2:#2563EB;--pl:#93C5FD;--cl:#7DD3FC;--pr:59,130,246;--cr:56,189,248;--bgr:10,16,32;--sr:17,26,48}
+html[data-theme="orange"]{--bg:#141414;--surface:#1D1D1D;--line:#2E2E2E;--ink:#F5F1EA;--muted:#A3A09A;--p:#F97316;--c:#FBBF24;--p2:#EA580C;--pl:#FDBA74;--cl:#FDE68A;--pr:249,115,22;--cr:251,191,36;--bgr:20,20,20;--sr:29,29,29}
+html[data-theme="emerald"]{--bg:#0B1512;--surface:#112019;--line:#1E3329;--ink:#EDF7F1;--muted:#8FB0A0;--p:#10B981;--c:#2DD4BF;--p2:#059669;--pl:#6EE7B7;--cl:#5EEAD4;--pr:16,185,129;--cr:45,212,191;--bgr:11,21,18;--sr:17,32,25}
+.g1{background:linear-gradient(135deg,var(--p),color-mix(in srgb,var(--p) 20%,var(--bg)) 75%)}
+.g2{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 20%,var(--bg)) 75%)}
+.g3{background:radial-gradient(circle at 30% 30%,var(--pl),color-mix(in srgb,var(--p) 25%,var(--bg)) 80%)}
+.g4{background:linear-gradient(160deg,var(--p2),var(--c))}
+.g5{background:radial-gradient(circle at 70% 30%,var(--c),var(--surface) 75%)}
+.pic img{width:100%;height:100%;object-fit:cover;border-radius:25px;display:block}
+.pj i img{width:100%;height:100%;object-fit:cover;display:block}
+.sv .price{margin:1rem 0 0;font-weight:700;color:var(--pl)}.sv .price b{color:var(--ink)}
+.sv .price+.btn{margin-top:1rem}
+.gal{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem}.gal button{width:64px;height:48px;border-radius:10px;overflow:hidden;border:2px solid var(--line);padding:0;background:var(--surface);cursor:pointer}.gal button:hover{border-color:var(--c)}.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.lm img{width:100%;height:100%;object-fit:cover}
+.ac .by+.by{margin-top:.2rem}

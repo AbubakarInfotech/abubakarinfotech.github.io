@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>About – Abubakar Khoso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121316;--surface:#1A1C21;--line:#2A2D35;--ink:#F3F1EC;--muted:#9B9EA8;--orange:#FF6A1F;--blue:#2F7BFF;
+--display:'Syne','Segoe UI',system-ui,sans-serif;--body:'Manrope','Segoe UI',system-ui,sans-serif;--ease:cubic-bezier(.2,.7,.2,1);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}p{margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto;position:relative}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;will-change:transform,opacity}
+.o1{width:520px;height:520px;background:var(--orange);left:-160px;top:6%;animation:d1 26s ease-in-out infinite alternate,p 9s ease-in-out infinite}
+.o2{width:600px;height:600px;background:var(--blue);right:-200px;top:30%;animation:d2 32s ease-in-out infinite alternate,p 11s ease-in-out infinite 2s}
+.o3{width:420px;height:420px;background:var(--orange);left:35%;bottom:-160px;opacity:.18;animation:d3 28s ease-in-out infinite alternate,p 13s ease-in-out infinite 4s}
+.o4{width:340px;height:340px;background:var(--blue);left:12%;top:62%;opacity:.16;animation:d2 36s ease-in-out infinite alternate-reverse,p 10s ease-in-out infinite 1s}
+@keyframes d1{to{transform:translate(260px,180px)}}@keyframes d2{to{transform:translate(-300px,-140px)}}@keyframes d3{to{transform:translate(-240px,-120px)}}
+@keyframes p{50%{opacity:.12}}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.95rem 1.8rem;border-radius:999px;font:700 1rem var(--body);border:2px solid transparent;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-main{background:var(--orange);color:#14100D;box-shadow:0 10px 30px -10px rgba(255,106,31,.7)}
+.btn-main:hover{box-shadow:0 16px 36px -10px rgba(255,106,31,.9)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:.3s}
+.nav.s{background:rgba(var(--bgr),.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font:800 1.5rem var(--display)}.logo i{font-style:normal;color:var(--orange)}
+.links{display:flex;align-items:center;gap:1.6rem;list-style:none;margin:0;padding:0}
+.links a:not(.btn){color:var(--muted);font-weight:500;transition:color .2s;padding:.2rem 0;border-bottom:2px solid transparent}
+.links a:not(.btn):hover,.links a.on{color:var(--ink)}.links a.on{border-color:var(--orange)}
+.links .btn{padding:.6rem 1.25rem}
+.burger{display:none;background:0;border:0;width:44px;height:44px;color:var(--ink);cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:currentColor;margin:6px auto;transition:.3s var(--ease)}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:860px){.burger{display:block}
+.links{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:.5rem 20px 1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.3s var(--ease)}
+.links.open{opacity:1;visibility:visible;transform:none}.links li{border-bottom:1px solid var(--line)}.links li:last-child{border:0;padding-top:1.2rem}
+.links a:not(.btn){display:block;padding:1rem 0;font-size:1.15rem;border:0}}
+
+.ph{padding:150px 0 30px}
+.ph h1{font-size:clamp(3.4rem,10vw,7rem);font-weight:800;letter-spacing:-.05em;line-height:.95;padding-bottom:.08em;background:linear-gradient(100deg,var(--orange),#FF9A55 45%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;animation:fu 1s var(--ease) .1s both}
+.ph p{color:var(--muted);font-size:clamp(1.1rem,2vw,1.35rem);max-width:36rem;margin-top:1.2rem;animation:fu 1s var(--ease) .3s both}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}}
+section{padding:clamp(50px,8vw,100px) 0}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv.in{opacity:1;transform:none}
+.head{margin-bottom:2.6rem}.head p{color:var(--muted);margin-top:1rem;max-width:34rem}
+/* story */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.frame{position:relative;max-width:400px;width:100%;position:sticky;top:110px}
+.frame::before{content:"";position:absolute;inset:-3px;border-radius:30px;background:linear-gradient(145deg,var(--orange),var(--blue));filter:blur(22px);opacity:.5;animation:gl 6s ease-in-out infinite}
+@keyframes gl{50%{opacity:.22}}
+.pic{position:relative;aspect-ratio:4/5;border-radius:28px;padding:3px;background:linear-gradient(145deg,var(--orange),var(--blue));animation:wipe 1.5s var(--ease) .3s both}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0);opacity:1}}
+.pic div{height:100%;border-radius:25px;background:radial-gradient(circle at 50% 30%,#2A2E38,#16181D);display:grid;place-items:center;color:var(--muted);text-align:center;font-size:.95rem}
+.pic svg{width:44%;opacity:.55;display:block;margin:0 auto .6rem}
+.txt p{color:#CFCFD4;margin-bottom:1.2rem;max-width:40rem}
+.txt p:first-child{font:700 clamp(1.4rem,3vw,2rem)/1.25 var(--display);color:var(--ink);letter-spacing:-.01em}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:2rem 0 0;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.facts div{background:var(--surface);padding:1.1rem 1.3rem}.facts dt{color:var(--muted);font-size:.9rem}.facts dd{margin:.15rem 0 0;font-weight:700}
+@media(max-width:860px){.story{grid-template-columns:1fr}.frame{position:relative;top:0;margin:0 auto;max-width:300px}.ph{padding-top:120px}}
+@media(max-width:480px){.facts{grid-template-columns:1fr}}
+/* stats */
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:24px;background:rgba(var(--sr),.7);backdrop-filter:blur(8px)}
+.stat{padding:2.2rem 1rem;text-align:center;border-left:1px solid var(--line)}.stat:first-child{border:0}
+.stat strong{display:block;font:800 clamp(2.4rem,5vw,3.6rem) var(--display);line-height:1;margin-bottom:.4rem;background:linear-gradient(120deg,var(--orange),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:.98rem}
+@media(max-width:700px){.stats .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+/* journey */
+.tl{list-style:none;margin:0;padding:0 0 0 2rem;position:relative;max-width:46rem}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--orange),var(--blue));opacity:.5}
+.tl li{position:relative;padding-bottom:2.2rem}.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-2rem;top:.45rem;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--orange);box-shadow:0 0 16px rgba(255,106,31,.6)}
+.tl li:nth-child(even)::before{border-color:var(--blue);box-shadow:0 0 16px rgba(47,123,255,.6)}
+.tl h3{font-size:1.35rem;margin-bottom:.4rem}.tl p{color:var(--muted)}
+/* projects */
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pr{padding:1.8rem;background:var(--surface);border:1px solid var(--line);border-radius:22px;transition:transform .45s var(--ease),border-color .45s,box-shadow .45s}
+.pr:hover{transform:translateY(-6px);border-color:#4A4F5C;box-shadow:0 26px 60px -26px rgba(255,106,31,.4),0 0 0 1px rgba(47,123,255,.25)}
+.pr h3{font-size:1.5rem;margin-bottom:.6rem}.pr p{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
+.chips span{font-size:.85rem;font-weight:700;padding:.2rem .75rem;border-radius:999px;background:rgba(47,123,255,.14);color:#8FB4FF}
+.chips span.o{background:rgba(255,106,31,.14);color:#FFA675}
+@media(max-width:760px){.pg{grid-template-columns:1fr}}
+/* learning */
+.lg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.lc{display:flex;gap:1rem;align-items:flex-start;padding:1.4rem;border:1px solid var(--line);border-radius:20px;background:rgba(var(--sr),.7);transition:border-color .4s,transform .4s var(--ease)}
+.lc:hover{border-color:var(--orange);transform:translateY(-4px)}
+.lc svg{flex:none;width:26px;height:26px;fill:none;stroke:var(--orange);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:.1rem}
+.lc:nth-child(even) svg{stroke:var(--blue)}
+.lc b{display:block;font-family:var(--display);font-size:1.1rem;line-height:1.2;margin-bottom:.25rem}.lc span{color:var(--muted);font-size:.95rem}
+@media(max-width:900px){.lg{grid-template-columns:1fr 1fr}}@media(max-width:560px){.lg{grid-template-columns:1fr}}
+/* different + mission */
+.mis{padding:clamp(2rem,5vw,4rem);border-radius:30px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,106,31,.12),rgba(47,123,255,.12)),var(--surface)}
+.mis h2{font-size:clamp(1.8rem,4.2vw,3rem);max-width:22ch;line-height:1.1;margin-bottom:1.3rem}
+.mis p{color:#CFCFD4;max-width:42rem}.mis p+p{margin-top:1rem}
+.close{text-align:center;padding:clamp(50px,8vw,100px) 0 clamp(70px,10vw,120px)}
+.close h2{font-size:clamp(2.2rem,6vw,4.4rem);max-width:16ch;margin:0 auto 1.2rem;letter-spacing:-.04em}
+.close p{color:var(--muted);max-width:34rem;margin:0 auto 2rem;font-size:1.15rem}
+.close .row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-line{border-color:var(--line);color:var(--ink)}.btn-line:hover{border-color:var(--blue)}
+.foot{border-top:1px solid var(--line);padding:3rem 0 2rem;background:rgba(var(--bgr),.7)}
+.fg{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.fl{display:flex;gap:1.6rem;flex-wrap:wrap;list-style:none;padding:0;margin:1rem 0 0}.fl a{color:var(--muted);transition:color .2s}.fl a:hover{color:var(--orange)}
+.soc{display:flex;gap:.7rem;align-items:flex-start}
+.soc a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.3s var(--ease)}
+.soc a:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-3px)}.soc svg{width:20px;height:20px;fill:currentColor}
+.copy{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.93rem}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("cms_theme")||"slate")}catch(e){document.documentElement.setAttribute("data-theme","slate")}</script>
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div></div>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a href="index.html" class="logo" aria-label="Abubakar, home">abubakar<i>.</i></a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  <ul class="links" id="menu">
+    <li><a href="index.html">Home</a></li><li><a href="about.html" class="on" aria-current="page">About</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="btn btn-main">Hire me</a></li>
+  </ul>
+</div></header>
+
+<main>
+<section class="ph"><div class="wrap">
+  <h1 data-cms="about_1">About me</h1>
+  <p data-cms="about_2">I build complete apps that solve local problems, from farmers’ advisories to teachers’ exam papers.</p>
+</div></section>
+
+<section style="padding-top:40px"><div class="wrap story">
+  <div class="frame"><div class="pic" role="img" aria-label="Profile photo placeholder"><div><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4-6.5 8-6.5s7 2 8 6.5"/></svg>Your photo goes here</span></div></div></div>
+  <div class="txt">
+    <p class="rv" data-cms="about_3">I’m Abubakar Khoso, a final-year BS Information Technology student at the University of Sindh, Pakistan.</p>
+    <p class="rv" data-cms="about_4">I started with Python and web development. My curiosity soon grew into building real products people can actually use, not just exercises from a tutorial.</p>
+    <p class="rv" data-cms="about_5">Alongside my degree, I keep learning through hands-on courses and certifications in Python, Excel, data analytics, Azure AI fundamentals and community-focused programs.</p>
+    <dl class="facts rv">
+      <div><dt data-cms="about_6">Studying</dt><dd data-cms="about_7">BS Information Technology, final year</dd></div>
+      <div><dt data-cms="about_8">University</dt><dd data-cms="about_9">University of Sindh</dd></div>
+      <div><dt data-cms="about_10">Based in</dt><dd data-cms="about_11">Pakistan</dd></div>
+      <div><dt data-cms="about_12">Looking for</dt><dd data-cms="about_13">Entry-level role or internship</dd></div>
+    </dl>
+  </div>
+</div></section>
+
+<section class="stats" style="padding-top:0"><div class="wrap rv">
+  <div class="stat"><strong data-n="4" data-cms-n="about_n1">0</strong><span data-cms="about_14">Complete apps built</span></div>
+  <div class="stat"><strong data-n="3" data-cms-n="about_n2">0</strong><span data-cms="about_15">Languages in my exam-paper app</span></div>
+  <div class="stat"><strong data-n="2" data-cms-n="about_n3">0</strong><span data-cms="about_16">Provinces served by AgriLink</span></div>
+  <div class="stat"><strong data-n="5" data-cms-n="about_n4">0</strong><span data-cms="about_17">Courses and certifications</span></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head rv"><h2 data-cms="about_18">How I got here</h2></div>
+  <ol class="tl">
+    <li class="rv"><h3 data-cms="about_19">Python and web development</h3><p data-cms="about_20">I began with the basics, writing small programs and building simple websites.</p></li>
+    <li class="rv"><h3 data-cms="about_21">Curiosity became products</h3><p data-cms="about_22">I stopped following tutorials and started building apps for real users and real problems.</p></li>
+    <li class="rv"><h3 data-cms="about_23">Adding AI to the toolbox</h3><p data-cms="about_24">I learned to use the Gemini API and studied Azure AI fundamentals to make software smarter.</p></li>
+    <li class="rv"><h3 data-cms="about_25">The final-year project</h3><p data-cms="about_26">ColdChain, a web-based management system for ice factories, brings everything together.</p></li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head rv"><h2 data-cms="about_27">What I’ve built</h2><p data-cms="about_28">Practical software for people in Pakistan, designed to be easy to use.</p></div>
+  <div class="pg">
+    <article class="pr rv"><h3 data-cms="about_29">Exam-paper generator</h3><p data-cms="about_30">An Android app that uses the Gemini API to create exam papers for teachers in English, Urdu and Sindhi.</p><div class="chips"><span class="o" data-cms="about_31">Android</span><span class="" data-cms="about_32">Gemini API</span><span class="o" data-cms="about_33">English, Urdu, Sindhi</span></div></article>
+    <article class="pr rv"><h3 data-cms="about_34">AgriLink</h3><p data-cms="about_35">A farmer portal for Sindh and Punjab that puts useful agricultural advice in one place.</p><div class="chips"><span class="o" data-cms="about_36">Web portal</span><span class="" data-cms="about_37">Sindh and Punjab</span></div></article>
+    <article class="pr rv"><h3 data-cms="about_38">Color Gate Escape</h3><p data-cms="about_39">A colour-puzzle game built with Kotlin, made to be simple to pick up and hard to put down.</p><div class="chips"><span class="o" data-cms="about_40">Kotlin</span><span class="" data-cms="about_41">Mobile game</span></div></article>
+    <article class="pr rv"><h3 data-cms="about_42">ColdChain</h3><p data-cms="about_43">My final-year project: a web-based management system for ice factories.</p><div class="chips"><span class="o" data-cms="about_44">Web app</span><span class="" data-cms="about_45">Final-year project</span></div></article>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head rv"><h2 data-cms="about_46">Always learning</h2><p data-cms="about_47">Hands-on courses and certifications that keep my skills growing.</p></div>
+  <div class="lg">
+    <div class="lc rv"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b data-cms="about_48">Python</b><span data-cms="about_49">Hands-on courses and certification</span></div></div>
+    <div class="lc rv"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b data-cms="about_50">Excel</b><span data-cms="about_51">Hands-on courses and certification</span></div></div>
+    <div class="lc rv"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b data-cms="about_52">Data analytics</b><span data-cms="about_53">Deloitte Australia job simulation</span></div></div>
+    <div class="lc rv"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b data-cms="about_54">Azure AI Fundamentals</b><span data-cms="about_55">Core concepts of AI on Azure</span></div></div>
+    <div class="lc rv"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b data-cms="about_56">UNICEF e-learning</b><span data-cms="about_57">Programs on data and community engagement</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="mis rv">
+  <h2 data-cms="about_58">I don’t only follow tutorials. I build the whole app.</h2>
+  <p data-cms="about_59">My mission is to use code and AI to build practical, easy-to-use software for people in Pakistan and beyond.</p>
+  <p data-cms="about_60">I’m currently looking for an entry-level role or internship where I can grow into a strong software engineer.</p>
+</div></div></section>
+
+<section class="close"><div class="wrap rv">
+  <h2 data-cms="about_61">Let’s build something useful together.</h2>
+  <p data-cms="about_62">If you’re hiring for an entry-level role or internship, I’d love to hear from you.</p>
+  <div class="row"><a href="contact.html" class="btn btn-main" data-cms="about_63">Get in touch</a><a href="portfolio.html" class="btn btn-line" data-cms="about_64">See my work</a></div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div class="fg">
+    <div><a href="index.html" class="logo">abubakar<i>.</i></a>
+      <ul class="fl"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="soc">
+      <a href="https://github.com/AbubakarInfotech" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 015 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.6h.05c.55-1 1.9-2 3.9-2 4.1 0 4.5 2.7 4.5 6.2V21h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21h-4z"/></svg></a>
+      <a href="mailto:you@example.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm9 7L4.5 7v1.5l7.5 5 7.5-5V7z"/></svg></a>
+    </div>
+  </div>
+  <p class="copy">© <span id="yr">2026</span> Abubakar Khoso. All rights reserved.</p>
+</div></footer>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var nav=$('#nav'),bu=$('.burger'),mn=$('#menu');
+function sc(){nav.classList.toggle('s',scrollY>20)}addEventListener('scroll',sc,{passive:true});sc();
+bu.onclick=function(){var o=mn.classList.toggle('open');bu.setAttribute('aria-expanded',o);bu.setAttribute('aria-label',o?'Close menu':'Open menu')};
+mn.onclick=function(e){if(e.target.closest('a')){mn.classList.remove('open');bu.setAttribute('aria-expanded','false')}};
+$('#yr').textContent=new Date().getFullYear();
+function count(el){var to=+el.dataset.n;if(reduce){el.textContent=to;return}var t0;(function f(t){t0=t0||t;var p=Math.min((t-t0)/1600,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now())}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');e.target.querySelectorAll('[data-n]').forEach(count);io.unobserve(e.target)})},{threshold:.12});
+document.querySelectorAll('section').forEach(function(s){s.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=i*110+'ms';io.observe(el)})});
+})();
+</script>
+<script src="assets/defaults.js"></script>
+<script src="assets/firebase-config.js"></script>
+<script src="assets/fb.js"></script>
+<script src="assets/cms.js"></script>
+</body>
+</html>
