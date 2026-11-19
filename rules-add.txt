@@ -1,0 +1,10 @@
+Rules mein services wale block ke neeche (usi level par) yeh 2 block add karo:
+
+    match /skills/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /education/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }

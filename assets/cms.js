@@ -3,11 +3,11 @@
 var D=window.SITE_DEFAULTS,doc=document,IC=window.SITE_ICONS,SI=window.SOCIAL_ICONS;
 var $=function(s,r){return(r||doc).querySelector(s)},$$=function(s,r){return[].slice.call((r||doc).querySelectorAll(s))};
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-var live={config:null,projects:null,certs:null,services:null},dbp=null,imgs={};
+var live={config:null,projects:null,certs:null,services:null,skills:null,education:null},dbp=null,imgs={};
 try{var c0=JSON.parse(localStorage.getItem('cms_cache')||'null');if(c0)live=c0}catch(e){}
 function view(){var c=live.config||{},sd=!!c.seeded;
   return{texts:c.texts||{},contact:Object.assign({},D.contact,c.contact||{}),theme:c.theme||D.theme,images:c.images||{},
-   projects:sd&&live.projects?live.projects:D.projects,certs:sd&&live.certs?live.certs:D.certs,services:sd&&live.services?live.services:D.services}}
+   projects:sd&&live.projects?live.projects:D.projects,certs:sd&&live.certs?live.certs:D.certs,services:sd&&live.services?live.services:D.services,skills:live.skills||[],education:live.education||[]}}
 function svg(p,cls){return'<svg viewBox="0 0 24 24" aria-hidden="true"'+(cls||'')+'>'+p+'</svg>'}
 function certIcon(t){t=(t||'').toLowerCase();return/job|analytic/.test(t)?IC.data:/work/.test(t)?IC.cloud:/course/.test(t)?IC.table:/learn/.test(t)?IC.globe:/project/.test(t)?IC.web:IC.award}
 function img(id,alt){return'<img data-img="'+esc(id)+'" alt="'+esc(alt||'')+'">'}
@@ -48,6 +48,15 @@ function render(){
   // certifications
   var tk=$('#track');if(tk){tk.innerHTML=v.certs.map(function(c){return'<article class="cc"><div class="ci">'+svg(certIcon(c.type))+'</div><span class="ty">'+esc(c.type||'Certification')+'</span><h3>'+esc(c.name)+'</h3><p>'+esc(c.issuer)+(c.year?' · '+esc(c.year):'')+'</p></article>'}).join('');window.dispatchEvent(new Event('cms:certs'))}
   var ac=$('#cms-achv');if(ac){ac.innerHTML=v.certs.map(function(c){return'<li class="rv in"><article class="ac"><div class="top"><div class="ai">'+svg(certIcon(c.type))+'</div><div><div class="meta"><span>'+esc(c.type||'Certification')+'</span>'+(c.year?'<span>'+esc(c.year)+'</span>':'')+'</div><h2>'+esc(c.name)+'</h2></div></div>'+(c.issuer?'<p class="by">Issued by <b>'+esc(c.issuer)+'</b></p>':'')+(c.credId?'<p class="by">Credential ID: <b>'+esc(c.credId)+'</b></p>':'')+(c.why?'<p class="why">'+esc(c.why)+'</p>':'')+'</article></li>'}).join('')}
+  // skills page
+  var sk=$('#cms-skills');if(sk&&v.skills.length){sk.innerHTML=v.skills.map(function(s){var col=/^#[0-9a-f]{3,8}$/i.test(s.color||'')?s.color:'#FF6A1F',has=s.pct!==''&&s.pct!=null&&!isNaN(+s.pct),w=Math.max(0,Math.min(100,+s.pct||0));
+    return has?'<article class="kc rv in" style="--c:'+col+';--w:'+w+'%"><div class="ki">'+esc(s.icon)+'</div><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="kb"><i></i></span></article>'
+      :'<article class="kc kn rv in" style="--c:'+col+'"><div class="ki">'+esc(s.icon)+'</div><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p></article>'}).join('')}
+  // education page
+  var ed=$('#cms-edu');if(ed&&v.education.length){var dg=v.education.filter(function(x){return x.kind==='degree'}),ot=v.education.filter(function(x){return x.kind!=='degree'});
+    ed.innerHTML=dg.map(function(x){return'<article class="edc rv in">'+(x.period?'<span class="tag">'+esc(x.period)+'</span>':'')+'<h2>'+esc(x.title)+'</h2><p class="uni">'+esc(x.place)+'</p><div class="chips">'+String(x.details||'').split(',').map(function(t){return t.trim()}).filter(Boolean).map(function(t){return'<span>'+esc(t)+'</span>'}).join('')+'</div></article>'}).join('')+
+    (ot.length?'<h2 class="sub">Earlier education</h2><ul class="tl" style="margin-bottom:3rem">'+ot.map(function(x){return'<li class="rv in"><span class="by">'+esc(x.period||'')+'</span><h3>'+esc(x.title)+'</h3><span class="dt">'+esc(x.place)+(x.details?' · '+esc(x.details):'')+'</span></li>'}).join('')+'</ul>':'')}
+  var ec=$('#cms-edu-certs');if(ec&&v.certs.length){ec.innerHTML=v.certs.map(function(x){return'<li class="rv in"><span class="by">'+esc(x.issuer)+'</span><h3>'+esc(x.name)+'</h3><span class="dt">'+esc(x.year||'')+'</span></li>'}).join('')}
   if(window.onCmsProjects)window.onCmsProjects(v.projects);
   hydrate(doc);
 }
@@ -58,7 +67,7 @@ render();
 if(ok){
   dbp.then(function(o){var f=o.f,db=o.db;
     f.onSnapshot(f.doc(db,'site','config'),function(s){live.config=s.exists()?s.data():null;changed()});
-    ['projects','certs','services'].forEach(function(n){f.onSnapshot(f.query(f.collection(db,n),f.orderBy('order')),function(s){live[n]=s.docs.map(function(d){return Object.assign({id:d.id},d.data())});changed()})})
+    ['projects','certs','services','skills','education'].forEach(function(n){f.onSnapshot(f.query(f.collection(db,n),f.orderBy('order')),function(s){live[n]=s.docs.map(function(d){return Object.assign({id:d.id},d.data())});changed()},function(){})})
   }).catch(function(){});
 }
 })();

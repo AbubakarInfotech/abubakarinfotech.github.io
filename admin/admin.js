@@ -1,6 +1,6 @@
 (function(){
 var D=SITE_DEFAULTS,IC=SITE_ICONS,$=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
-var FB,db,f,auth,S={config:{},projects:[],certs:[],services:[]},ST={view:'dash',pageTab:'home',edit:null},cache={},loginPass='';
+var FB,db,f,auth,S={config:{},projects:[],certs:[],services:[],skills:[],education:[]},ST={view:'dash',pageTab:'home',edit:null},cache={},loginPass='';
 var THEMES=[['slate','Slate Purple','Purple and cyan on dark charcoal (current)',['#121316','#8B5CF6','#22D3EE']],['midnight','Midnight Blue','Blue and sky on deep navy',['#0A1020','#3B82F6','#38BDF8']],['orange','Charcoal Orange','Orange and amber on charcoal',['#141414','#F97316','#FBBF24']],['emerald','Emerald Dark','Emerald and teal on dark green',['#0B1512','#10B981','#2DD4BF']]];
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function toast(m,bad){var t=$('#toast');t.textContent=m;t.className=bad?'bad':'';t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){t.style.display='none'},bad?6000:2800)}
@@ -46,6 +46,7 @@ async function seed(){
 async function loadAll(){
   var c=await f.getDoc(ref('site','config'));S.config=c.exists()?c.data():{};
   for(var n of['projects','certs','services']){var q=await f.getDocs(f.query(f.collection(db,n),f.orderBy('order')));S[n]=q.docs.map(function(d){return Object.assign({id:d.id},d.data())})}
+  for(var n2 of['skills','education']){try{var q2=await f.getDocs(f.query(f.collection(db,n2),f.orderBy('order')));S[n2]=q2.docs.map(function(d){return Object.assign({id:d.id},d.data())})}catch(e){S[n2]=[]}}
 }
 /* ---------- login / password ---------- */
 $('#lf').onsubmit=async function(e){e.preventDefault();$('#lerr').textContent='';var b=$('#lb');b.disabled=true;
@@ -64,7 +65,7 @@ $('#ff').onsubmit=async function(e){e.preventDefault();var a=$('#fp1').value,b=$
 /* ---------- navigation ---------- */
 $('#nav').onclick=function(e){var b=e.target.closest('button');if(b){ST.edit=null;go(b.dataset.v);$('#side').classList.remove('open')}};
 $('#burger').onclick=function(){$('#side').classList.toggle('open')};
-var V={dash:vDash,pages:vPages,projects:vProjects,certs:vCerts,services:vServices,contact:vContact,images:vImages,themes:vThemes,account:vAccount};
+var V={dash:vDash,pages:vPages,projects:vProjects,certs:vCerts,services:vServices,skills:vSkills,education:vEdu,contact:vContact,images:vImages,themes:vThemes,account:vAccount};
 function go(v){ST.view=v;ST.others=null;$$('#nav button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});$('#main').innerHTML=V[v]();hydrate($('#main'));scrollTo(0,0)}
 function rerender(){var y=scrollY;$('#main').innerHTML=V[ST.view]();hydrate($('#main'));scrollTo(0,y)}
 $('#main').addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var fn=ACT[b.dataset.act];if(fn){Promise.resolve(fn(b.dataset.id,b,e)).catch(fail)}});
@@ -74,7 +75,7 @@ var ACT={};
 function vDash(){
   var t=function(v,n,l){return'<div class="card tile" data-act="goto" data-id="'+v+'"><b>'+n+'</b>'+l+'</div>'};
   return'<h1>Dashboard</h1><p class="muted">Everything you save here goes live on your website immediately. Pick a section:</p><div class="grid3" style="margin-top:1rem">'+
-   t('pages',Object.keys(D.pageLabels).length,'Pages — edit the text on every page')+t('projects',S.projects.length,'Projects — add, edit, remove')+t('certs',S.certs.length,'Certifications &amp; achievements')+t('services',S.services.length,'Services &amp; prices')+
+   t('pages',Object.keys(D.pageLabels).length,'Pages — edit the text on every page')+t('projects',S.projects.length,'Projects — add, edit, remove')+t('certs',S.certs.length,'Certifications &amp; achievements')+t('services',S.services.length,'Services &amp; prices')+t('skills',S.skills.length,'Skills — cards on the Skills page')+t('education',S.education.length,'Education — degree, inter, matric')+
    t('contact','@','Contact &amp; social links')+t('images','🖼','Images — photo and screenshots')+t('themes','🎨','Themes — 4 colour styles')+t('account','🔒','Account / password')+'</div>'+
    '<div class="note">Current theme: <b>'+esc((THEMES.filter(function(x){return x[0]===(S.config.theme||'slate')})[0]||THEMES[0])[1])+'</b> · Signed in as <b>'+esc(auth.currentUser.email)+'</b></div>'}
 ACT.goto=function(id){go(id)};
@@ -102,12 +103,14 @@ async function del(n,id){var x=S[n].find(function(z){return z.id===id});if(!conf
 ACT.up=function(id,b){return move(b.dataset.col,id,-1)};ACT.down=function(id,b){return move(b.dataset.col,id,1)};ACT.del=function(id,b){return del(b.dataset.col,id)};
 function ctl(col,id){return btn('up','↑','sm',id).replace('<button','<button data-col="'+col+'" title="Move up"')+btn('down','↓','sm',id).replace('<button','<button data-col="'+col+'" title="Move down"')+btn('edit','Edit','sm',id).replace('<button','<button data-col="'+col+'"')+btn('del','Delete','sm dan',id).replace('<button','<button data-col="'+col+'"')}
 ACT.edit=function(id,b){var col=b.dataset.col;ST.edit={col:col,data:JSON.parse(JSON.stringify(S[col].find(function(x){return x.id===id}))),orig:(S[col].find(function(x){return x.id===id}).shots||[]).slice(),added:[]};rerender()};
-ACT.add=function(id,b){var col=b.dataset.col,t={projects:{title:'',short:'',long:'',tags:[],cats:['android'],repo:'',status:'done',shots:[],featured:true},certs:{name:'',issuer:'',year:String(new Date().getFullYear()),credId:'',type:'Online course',why:''},services:{title:'',desc:'',tags:[],icon:'web',priceMode:'quote',price:''}}[col];ST.edit={col:col,data:t,orig:[],added:[]};rerender()};
+ACT.add=function(id,b){var col=b.dataset.col,t={projects:{title:'',short:'',long:'',tags:[],cats:['android'],repo:'',status:'done',shots:[],featured:true},certs:{name:'',issuer:'',year:String(new Date().getFullYear()),credId:'',type:'Online course',why:''},services:{title:'',desc:'',tags:[],icon:'web',priceMode:'quote',price:''},skills:{name:'',desc:'',pct:70,icon:'',color:'#ff6a1f'},education:{title:'',place:'',period:'',details:'',kind:'other'}}[col];ST.edit={col:col,data:t,orig:[],added:[]};rerender()};
 ACT.cancel=function(){(ST.edit.added||[]).forEach(delImg);ST.edit=null;rerender()};
 function grab(){var e=ST.edit,d=e.data,g=function(i){var x=$('#'+i);return x?x.value.trim():''};
   if(e.col==='projects'){d.title=g('f_title');d.short=g('f_short');d.long=g('f_long');d.tags=tl(g('f_tags'));d.repo=g('f_repo');d.status=g('f_status');d.featured=$('#f_feat').checked;d.cats=$$('.cat:checked').map(function(x){return x.value})}
   if(e.col==='certs'){d.name=g('f_name');d.issuer=g('f_issuer');d.year=g('f_year');d.credId=g('f_cid');d.type=g('f_type');d.why=g('f_why')}
-  if(e.col==='services'){d.title=g('f_title');d.desc=g('f_desc');d.tags=tl(g('f_tags'));d.icon=g('f_icon');d.priceMode=($('[name=pm]:checked')||{}).value||'quote';d.price=g('f_price')}}
+  if(e.col==='services'){d.title=g('f_title');d.desc=g('f_desc');d.tags=tl(g('f_tags'));d.icon=g('f_icon');d.priceMode=($('[name=pm]:checked')||{}).value||'quote';d.price=g('f_price')}
+  if(e.col==='skills'){d.name=g('f_name');d.desc=g('f_desc');d.pct=g('f_pct')===''?'':Math.max(0,Math.min(100,+g('f_pct')||0));d.icon=g('f_icon');d.color=g('f_color')||'#ff6a1f'}
+  if(e.col==='education'){d.title=g('f_title');d.place=g('f_place');d.period=g('f_period');d.details=g('f_details');d.kind=g('f_kind')}}
 ACT.save=async function(){grab();var e=ST.edit,d=e.data,col=e.col;
   if(!(d.title||d.name)){toast('Please fill in the title/name first.',true);return}
   if(col==='projects'&&!d.cats.length){toast('Pick at least one category.',true);return}
@@ -143,6 +146,25 @@ function vServices(){var e=ST.edit;if(e&&e.col==='services'){var d=e.data;return
   '<div class="f"><span>Price</span><div class="chk"><label><input type="radio" name="pm" value="quote"'+(d.priceMode!=='from'?' checked':'')+'> Contact for a quote</label><label><input type="radio" name="pm" value="from"'+(d.priceMode==='from'?' checked':'')+'> Starting price</label></div>'+inp('f_price',d.price,'text','For example PKR 15,000 or $50')+'<small>Only used when “Starting price” is selected. Include the currency.</small></div></div><div class="row">'+btn('save','Save service','pri')+btn('cancel','Cancel')+'</div>'}
   return'<div class="row"><h1 class="sp">Services</h1>'+btn('add','+ Add service','pri').replace('<button','<button data-col="services"')+'</div><p class="muted">The first four also appear on the Home page.</p>'+
    (S.services.length?S.services.map(function(s){return'<div class="item"><div class="tx"><b>'+esc(s.title)+'</b><span class="muted">'+(s.priceMode==='from'&&s.price?'Starting at '+esc(s.price):'Contact for a quote')+'</span></div><div class="row">'+ctl('services',s.id)+'</div></div>'}).join(''):'<div class="card muted">No services yet.</div>')}
+/* ---------- skills & education ---------- */
+var SK_DEF=[['Py','Python','Programming language',78,'#FFD43B'],['Dj','Django','Backend framework',72,'#44B78B'],['5','HTML','Web structure',82,'#FF6A1F'],['✳','CSS','Web styling',78,'#2F7BFF'],['▤','MySQL','Database',68,'#4DA3FF'],['⌘','Git','Version control',65,'#FF7A59'],['◈','GitHub','Code hosting',70,'#C9B8FF'],['✦','Currently learning','Deeper Python fundamentals, Django concepts, debugging and writing code with confidence.','','#FF6A1F']].map(function(r){return{icon:r[0],name:r[1],desc:r[2],pct:r[3],color:r[4]}});
+var ED_DEF=[{title:'BS Information Technology',place:'University of Sindh, Jamshoro',period:'Final Year',details:'Python, Django, Web Development, MySQL',kind:'degree'}];
+async function seedCol(col){var list=col==='skills'?SK_DEF:ED_DEF,b=f.writeBatch(db);
+  list.forEach(function(x,i){var o=Object.assign({},x,{order:i+1}),id=f.doc(f.collection(db,col)).id;b.set(ref(col,id),o);S[col].push(Object.assign({id:id},o))});
+  await b.commit();rerender();toast('Starter list loaded. You can now edit it.')}
+ACT.seed=function(col){return seedCol(col)};
+function vSkills(){var e=ST.edit;if(e&&e.col==='skills'){var d=e.data;
+  return'<h1>'+(d.id?'Edit skill':'New skill')+'</h1><div class="card">'+Fl('Skill name',inp('f_name',d.name))+Fl('Short description',inp('f_desc',d.desc))+
+  '<div class="row"><div class="sp">'+Fl('Icon text',inp('f_icon',d.icon),'1–2 letters or a symbol, for example Py')+'</div><div class="sp">'+Fl('Level bar (%)',inp('f_pct',d.pct,'number'),'0 to 100. Leave empty for a note card with no bar.')+'</div></div>'+
+  Fl('Colour','<input id="f_color" type="color" value="'+esc(/^#[0-9a-f]{6}$/i.test(d.color)?d.color:'#ff6a1f')+'">')+'</div><div class="row">'+btn('save','Save skill','pri')+btn('cancel','Cancel')+'</div>'}
+  return'<div class="row"><h1 class="sp">Skills</h1>'+btn('add','+ Add skill','pri').replace('<button','<button data-col="skills"')+'</div><p class="muted">These cards appear on the Skills page, in this order.</p>'+
+   (S.skills.length?S.skills.map(function(s){return'<div class="item"><div class="tx"><b>'+esc(s.name)+'</b><span class="muted">'+esc(s.desc)+(s.pct!==''&&s.pct!=null?' · '+esc(s.pct)+'%':'')+'</span></div><div class="row">'+ctl('skills',s.id)+'</div></div>'}).join(''):'<div class="card"><p class="muted">No skills saved yet, so the Skills page shows its built-in list.</p>'+btn('seed','Load starter list (Python, Django, HTML…)','pri','skills')+'</div>')}
+function vEdu(){var e=ST.edit;if(e&&e.col==='education'){var d=e.data;
+  return'<h1>'+(d.id?'Edit education':'New education entry')+'</h1><div class="card">'+Fl('Title',inp('f_title',d.title),'For example: BS Information Technology, Intermediate (HSC), Matriculation (SSC)')+Fl('School / college / university',inp('f_place',d.place))+Fl('Year or period',inp('f_period',d.period),'For example: 2018–2020, or Final Year')+
+  Fl('Board, grade or details (optional)','<textarea id="f_details" style="min-height:70px">'+esc(d.details)+'</textarea>','For a degree: separate subjects with commas, they show as small tags.')+
+  Fl('Style','<select id="f_kind"><option value="degree"'+(d.kind==='degree'?' selected':'')+'>Main degree (big card)</option><option value="other"'+(d.kind!=='degree'?' selected':'')+'>Normal (timeline card)</option></select>')+'</div><div class="row">'+btn('save','Save','pri')+btn('cancel','Cancel')+'</div>'}
+  return'<div class="row"><h1 class="sp">Education</h1>'+btn('add','+ Add education','pri').replace('<button','<button data-col="education"')+'</div><p class="muted">Your degree, Intermediate and Matric. They appear on the Education page.</p>'+
+   (S.education.length?S.education.map(function(s){return'<div class="item"><div class="tx"><b>'+esc(s.title)+'</b><span class="muted">'+esc(s.place)+(s.period?' · '+esc(s.period):'')+'</span></div><div class="row">'+ctl('education',s.id)+'</div></div>'}).join(''):'<div class="card"><p class="muted">Nothing saved yet, so the Education page shows its built-in text.</p>'+btn('seed','Load my degree (BS IT)','pri','education')+'</div>')}
 /* ---------- contact ---------- */
 var OT=[['instagram','Instagram'],['x','X / Twitter'],['youtube','YouTube'],['facebook','Facebook'],['other','Other link']];
 function ctRows(){var o=ST.others;return o.map(function(x,i){return'<div class="field" style="margin-bottom:.5rem"><select class="ot" style="max-width:160px">'+OT.map(function(t){return'<option value="'+t[0]+'"'+(x.type===t[0]?' selected':'')+'>'+t[1]+'</option>'}).join('')+'</select><input class="ou" value="'+esc(x.url)+'" placeholder="https://…">'+btn('rmo','✕','sm dan',i)+'</div>'}).join('')}
@@ -176,6 +198,6 @@ ACT.chpw=async function(){var a0=$('#a0').value,a1=$('#a1').value,a2=$('#a2').va
   if(!pwOk(a1)){toast('Use at least 10 characters, with letters and numbers.',true);return}if(a1!==a2){toast('The new passwords do not match.',true);return}if(a1===a0){toast('The new password must be different.',true);return}
   try{await f.reauthenticateWithCredential(auth.currentUser,f.EmailAuthProvider.credential(auth.currentUser.email,a0))}catch(e){toast('Your current password is wrong.',true);return}
   await f.updatePassword(auth.currentUser,a1);rerender();toast('Password changed.')};
-ACT.out=function(){return f.signOut(auth).then(function(){S={config:{},projects:[],certs:[],services:[]};show('login')})};
+ACT.out=function(){return f.signOut(auth).then(function(){S={config:{},projects:[],certs:[],services:[],skills:[],education:[]};show('login')})};
 boot();
 })();
