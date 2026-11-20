@@ -191,6 +191,17 @@ section{padding:clamp(70px,10vw,120px) 0}
 @keyframes pc-float{50%{transform:translateY(-14px)}}
 @media(max-width:520px){.pc-stage{min-height:590px}.pc-t1{top:1%;left:2%}.pc-t2{top:3%;right:2%}.pc-o1{width:340px;height:340px;margin:-170px 0 0 -170px}.pc-o2{display:none}}
 @media(prefers-reduced-motion:reduce){.pc-stage *,.pc-card{animation:none!important}}
+/* ===== Phone lite mode: light animations, no heavy blur ===== */
+@media(max-width:860px),(hover:none){
+.orb{animation:none!important;filter:blur(60px);opacity:.2}
+.pc-aurora,.pc-grid,.pc-o2{display:none}
+.pc-stage{overflow:hidden;background:radial-gradient(circle 150px at 50% 22%,rgba(255,106,31,.25),transparent),radial-gradient(circle 160px at 50% 80%,rgba(47,123,255,.32),transparent)}
+.pc-orbit{animation:pc-spin 40s linear infinite;will-change:transform}
+.pc-card{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(22,24,36,.96);box-shadow:0 20px 40px -20px rgba(0,0,0,.8);will-change:transform}
+.pc-card::before{display:none}
+.pc-ring{filter:none;animation:pc-spin 8s linear infinite;will-change:transform}
+.pc-tag{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(22,24,36,.96);box-shadow:none;will-change:transform}
+}
 </style>
 <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("cms_theme")||"slate")}catch(e){document.documentElement.setAttribute("data-theme","slate")}</script>
 <link rel="stylesheet" href="assets/theme.css">
